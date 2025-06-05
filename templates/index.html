@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake News Detector</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
+        }
+        textarea {
+            resize: none;
+        }
+        .card {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+        }
+        .result-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .real {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .fake {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">📰 Fake News Detector</h1>
+        <p class="lead">Enter a news article and find out if it's real or fake using Machine Learning.</p>
+    </div>
+
+    <div class="card p-4">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="news_text" class="form-label">News Text</label>
+                <textarea class="form-control" id="news_text" name="news_text" rows="6" required placeholder="Paste the news content here..."></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-custom px-5">Check</button>
+            </div>
+        </form>
+
+        {% if result %}
+            <div class="result-box {{ 'real' if result == 'Real News' else 'fake' }}">
+                <p class="text-center fs-5">Prediction: {{ result }}</p>
+                <p class="text-center small">Votes: {{ votes }}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
